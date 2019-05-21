@@ -98,7 +98,7 @@ while(True):
 	    break
 
     # Slows down the replay
-    #time.sleep(0.05)
+    time.sleep(0.05)
 
 print(f'Range1 | {minHue}:{minSat}:{minVal}')
 print(f'Range2 | {maxHue}:{maxSat}:{maxVal}')

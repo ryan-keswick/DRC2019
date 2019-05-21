@@ -5,7 +5,7 @@
 import cv2
 import numpy as np 
 from loop import loopVideo
-
+from colorDectect import FindBigContour
 input_vid = "ObstacleTest1.av1"
 video = cv2.VideoCapture(input_vid)
 
@@ -38,28 +38,37 @@ RightLineupperRange = (RightLinehUpper, RightLinesUpper, RightLinevUpper)
 while True:
     #The first thing we want to do is read in a frame from the video
     frame, video = loopVideo(video, "ObstacleTest1.avi")
-
     hsvFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    LeftcolorFilter = cv2.inRange(hsvFrame, LeftLinelowerRange, LeftLineupperRange)
-    RightcolorFilter = cv2.inRange(hsvFrame, RightLinelowerRange, RightLineupperRange)
 
-    kernel = np.ones((5, 5), np.uint8)
-    LeftcolorFilter = cv2.dilate(LeftcolorFilter, kernel)    #play around with kernel size and operations
-    RightcolorFilter = cv2.dilate(RightcolorFilter, kernel)    #play around with kernel size and operations
 
-    # Creates a list of contours points  
-    Leftcontours, _ = cv2.findContours(LeftcolorFilter, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    Rightcontours, _ = cv2.findContours(RightcolorFilter, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-
-    if Leftcontours:
-        biggestCont = max(Leftcontours, key = cv2.contourArea)
+    LeftContours, LeftcolorFilter = FindBigContour(hsvFrame, LeftLinelowerRange, LeftLineupperRange)
+    if LeftContours:
+        biggestCont = max(LeftContours, key = cv2.contourArea)
         cv2.drawContours(frame, biggestCont, -1, (255,0,0), 2)
-   
+        if cv2.contourArea(biggestCont) > 200:
+            M = cv2.moments(biggestCont)
+            #calculate x position of centroid
+            cX = int(M["m10"] / M["m00"])
+            #calculate y position of centroid
+            cY = int(M["m01"] / M["m00"])
+            #draw a circle at the centroid to show where it is
+            #to draw a circle use cv2.circle(image, (x, y), radius, colour, thickness)
+            cv2.circle(frame, (cX, cY), 10, (0, 0, 255), -1)       
+        
+            #we can also draw a line from our car to the centroid and use this line to
+            #represent the path we want our car to take
+            #to draw a line use cv2.line(image, (x1, y1), (x2, y2), colour, thickness)
+            cv2.line(frame, (640, 480), (cX, cY), (255, 0, 255), 5)
+        
+
+
  
-    if Rightcontours:
-        biggestCont = max(Rightcontours, key = cv2.contourArea)
-        cv2.drawContours(frame, biggestCont, -1, (255,255,50), 2)
-   
+    RightContours, RightcolorFilter = FindBigContour(hsvFrame, RightLinelowerRange, RightLineupperRange)
+    if RightContours:
+        biggestCont = max(RightContours, key = cv2.contourArea)
+        cv2.drawContours(frame, biggestCont, -1, (255,180,0), 2)
+
+  
    
    
     #Display the images we got, these are the original image...(remember to add more)
