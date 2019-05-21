@@ -8,11 +8,13 @@ from loop import loopVideo
 from colorDectect import FindBigContour
 import heapq
 
-input_vid = "ObstacleTest1.avi"
+input_vid = "TrackTest4.avi"
 
 video = cv2.VideoCapture(input_vid)
 middlePix = 640
 yPix = 480
+delay = 0
+lap = 0
 
 if video.isOpened() is False:
     print("Error opening video file")
@@ -48,7 +50,15 @@ ObstacleLinevUpper = 71
 ObstacleLinelowerRange = (ObstacleLinehLower, ObstacleLinesLower, ObstacleLinevLower)
 ObstacleLineupperRange = (ObstacleLinehUpper, ObstacleLinesUpper, ObstacleLinevUpper)
 #*************************************************************************************
-
+FinishLinehLower = 48 
+FinishLinesLower = 36
+FinishLinevLower = 144 
+FinishLinehUpper = 69 
+FinishLinesUpper = 63 
+FinishLinevUpper = 162 
+#Put these values into an array, this will be helpful when passing it to functions later
+FinishLinelowerRange = (FinishLinehLower, FinishLinesLower, FinishLinevLower)
+FinishLineupperRange = (FinishLinehUpper, FinishLinesUpper, FinishLinevUpper)
 
 
 while True:
@@ -94,9 +104,9 @@ while True:
                 cv2.drawContours(frame, contour, -1, (255,180,180), 2)
                 O = cv2.moments(contour)
                 #calculate x position of centroid
-                OcX = int(R["m10"] / R["m00"])
+                OcX = int(O["m10"] / O["m00"])
                 #calculate y position of centroid
-                OcY = int(R["m01"] / R["m00"])
+                OcY = int(O["m01"] / O["m00"])
                 #draw a circle at the centroid to show where it is
                 cv2.circle(frame, (OcX, OcY), 10, (0, 0, 255), -1)       
 
@@ -106,8 +116,26 @@ while True:
     Ldist = abs(middlePix - LcX)
     cv2.circle(frame, (Rdist-Ldist+middlePix, int(yPix/2)),10,  (0,0,255), -1)
 
+    # diff is the steering
+    diff = Rdist - Ldist
+    # Speed is how fast the car should go
+    speed = abs(-0.0006*diff*diff+100)
+    print(str(diff) + " " + str(speed))
 
-    print(Rdist - Ldist)
+    # Lap detection
+    delay = delay + 1
+    FinishContours, _ = FindBigContour(hsvFrame, FinishLinelowerRange, FinishLineupperRange)
+    cv2.putText(frame, "Lap " + str(lap), (10,25), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
+    # When the finish line is detected set delay to zero and count the lap
+    if FinishContours:
+        contour = max(FinishContours, key=cv2.contourArea)
+        cv2.drawContours(frame, contour,-1, (0,0,0), 2)
+        #print(str(delay) + ' '+ str(cv2.contourArea(contour)))
+        if delay > 100:
+            if cv2.contourArea(contour) > 5000:
+                lap = lap + 1
+                delay = 0
+
     #Display the images we got, these are the original image...(remember to add more)
     cv2.imshow('original image', frame) #display the original frame from video
     cv2.imshow('Left', LeftcolorFilter) #display the original frame from video

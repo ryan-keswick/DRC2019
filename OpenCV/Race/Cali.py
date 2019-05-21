@@ -59,7 +59,7 @@ def loopVideo(cap, videoName):
 # Request the Device to Capture Footage from Camera
 # Setting it to  video or not
 #cap = cv2.VideoCapture(0)
-input_vid = "TrackTest4.avi"
+input_vid = "ObstacleTest1.avi"
 video = cv2.VideoCapture(input_vid)
 
 cv2.namedWindow("Frame")
