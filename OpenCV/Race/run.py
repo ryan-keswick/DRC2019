@@ -2,6 +2,7 @@
 #
 #
 
+import serial
 import cv2
 import numpy as np 
 from loop import loopVideo
@@ -9,6 +10,10 @@ from colorDectect import FindBigContour
 from output import output_speed, output_steering
 import heapq
 
+
+#Ard
+port = "/dev/ttyACM0"
+ard = serial.Serial(port, 9600, timeout=5)
 
 
 middlePix = 640
@@ -132,7 +137,9 @@ while True:
     # Speed is how fast the car should go
     speed = abs(-0.0006*diff*diff+100)
     print(str(output_steering(diff)))
+    ard.write(str.encode((output_steering(diff))))
     print(str(output_speed(10)))
+    ard.write((output_speed(10)))
 
     # Lap detection
     delay = delay + 1
