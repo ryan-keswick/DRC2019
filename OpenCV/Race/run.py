@@ -8,17 +8,12 @@ from loop import loopVideo
 from colorDectect import FindBigContour
 import heapq
 
-input_vid = "TrackTest4.avi"
 
-video = cv2.VideoCapture(input_vid)
+
 middlePix = 640
 yPix = 480
 delay = 0
 lap = 0
-
-if video.isOpened() is False:
-    print("Error opening video file")
-
 #*******************Adjust these values***********************************************
 LeftLinehLower = 108
 LeftLinesLower = 131 
@@ -60,10 +55,26 @@ FinishLinevUpper = 162
 FinishLinelowerRange = (FinishLinehLower, FinishLinesLower, FinishLinevLower)
 FinishLineupperRange = (FinishLinehUpper, FinishLinesUpper, FinishLinevUpper)
 
+# Used for Prerecored Vid`
+input_vid = "ObstacleTest1.avi" 
+video = cv2.VideoCapture(input_vid)
+if video.isOpened() is False:
+    print("Error opening video file")
+
+# Used for webcam
+#cap = cv2.VideoCapture(4)
+RcX = 0
+LcX = 0
 
 while True:
+    # Used for webcam
+    #_, frame = cap.read()
+   
     #The first thing we want to do is read in a frame from the video
+    # This is used for looping a prerecorded vid
     frame, video = loopVideo(video, input_vid)
+  
+  
     hsvFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
 

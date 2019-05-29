@@ -58,15 +58,17 @@ def loopVideo(cap, videoName):
 
 # Request the Device to Capture Footage from Camera
 # Setting it to  video or not
-#cap = cv2.VideoCapture(0)
-input_vid = "ObstacleTest1.avi"
-video = cv2.VideoCapture(input_vid)
+cap = cv2.VideoCapture(4)
+#input_vid = "ObstacleTest1.avi"
+#video = cv2.VideoCapture(input_vid)
 
 cv2.namedWindow("Frame")
 cv2.setMouseCallback("Frame", mouse_click)
 
 while(True):
-    frame, video = loopVideo(video, input_vid)
+
+    _, frame = cap.read()
+#    frame, video = loopVideo(video, input_vid)
 
     # Obtaining the Number of Rows and Columns in the Image
     rows, cols = frame.shape[:2]
