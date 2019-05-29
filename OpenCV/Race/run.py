@@ -16,7 +16,7 @@ port = "/dev/ttyACM0"
 ard = serial.Serial(port, 9600, timeout=5)
 
 
-middlePix = 640
+middlePix = 320
 yPix = 480
 delay = 0
 lap = 0
