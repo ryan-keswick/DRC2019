@@ -63,7 +63,7 @@ if video.isOpened() is False:
     print("Error opening video file")
 '''
 # Used for webcam
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 RcX = 0
 LcX = 0
 
