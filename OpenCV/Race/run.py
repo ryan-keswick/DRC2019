@@ -10,7 +10,7 @@ import heapq
 
 
 
-middlePix = 640
+middlePix = 320
 yPix = 480
 delay = 0
 lap = 0
