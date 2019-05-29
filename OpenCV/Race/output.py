@@ -3,30 +3,33 @@
 #
 
 def output_steering(x):
+
     letter = 'F'
-    
-    if x < -350:
-        letter = 'K'
-    elif x < -250:
-        letter = 'J' 
-    elif x < -150:
-        letter = 'I' 
-    elif x < -50:
-        letter = 'H'
-    elif x < -25:
-        letter = 'G'
-    elif -25 < x and x < 25:
-        letter = 'F'
-    elif x > 50:
-        letter = 'E'
-    elif x > 150:
-        letter = 'D' 
-    elif x > 250:
-        letter = 'C'
+    if -350 > x:
+       letter = 'K'   
+    elif -350 < x and x < -300:
+       letter = 'J'   
+    elif -300 < x and x < -250:
+       letter = 'I'   
+    elif -250 < x and x < -100:
+       letter = 'H'   
+    elif -100 < x and x < -10:
+       letter = 'G'   
+    elif -10 < x and x < 10:
+       letter = 'F'   
+    elif 10 < x and x < 100:
+       letter = 'E'   
+    elif 100 < x and x < 250:
+       letter = 'D'   
+    elif 250 < x and x < 299:
+       letter = 'C'   
+    elif 300 < x and x < 350:
+       letter = 'B'   
     elif x > 350:
-        letter = 'B'
-    elif x > 400:
-        letter = 'A'
+       letter = 'A'   
+
+
+
 
     return letter
 
