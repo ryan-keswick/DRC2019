@@ -77,6 +77,7 @@ cap = cv2.VideoCapture(0)
 RcX = 0
 LcX = 0
 frameskip = 0
+frames = 0
 
 
 while True:
@@ -177,6 +178,7 @@ while True:
 
     if cv2.waitKey(25) & 0xFF == ord('q'):
         break
+    frames = frames + 1
 
 end = time.time()
 secs = end - start
