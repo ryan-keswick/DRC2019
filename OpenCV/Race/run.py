@@ -142,7 +142,7 @@ while True:
     cv2.circle(frame, (Rdist-Ldist+middlePix, int(yPix/2)),10,  (0,0,255), -1)
 
     #Slowing down output
-    if frameskip is 2:
+    if frameskip is 3:
         frameskip = 0
         # diff is the steering
         diff = Rdist - Ldist
