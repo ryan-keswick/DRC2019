@@ -142,7 +142,7 @@ while True:
     cv2.circle(frame, (Rdist-Ldist+middlePix, int(yPix/2)),10,  (0,0,255), -1)
 
     #Slowing down output
-    if frameskip is 6:
+    if frameskip is 1:
         frameskip = 0
         # diff is the steering
         diff = Rdist - Ldist
@@ -174,7 +174,7 @@ while True:
     cv2.imshow('original image', frame) #display the original frame from video
     cv2.imshow('Left', LeftcolorFilter) #display the original frame from video
     cv2.imshow('Right', RightcolorFilter) #display the original frame from video
-    cv2.imshow('Obstacles', ObstaclecolorFilter)
+    cv2.imshow('Ofpsbstacles', ObstaclecolorFilter)
 
     if cv2.waitKey(25) & 0xFF == ord('q'):
         break
