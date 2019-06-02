@@ -169,7 +169,6 @@ while True:
     cv2.putText(frame, str(ver), (100,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
     frameskip = frameskip + 1
 
-
     #Display the images we got, these are the original image...(remember to add more)
     cv2.imshow('original image', frame) #display the original frame from video
     cv2.imshow('Left', LeftcolorFilter) #display the original frame from video
@@ -179,11 +178,10 @@ while True:
     if cv2.waitKey(25) & 0xFF == ord('q'):
         break
 
-    end = time.time()
-
-
+end = time.time()
 secs = end - start
-fps = frameskip/secs
+fps = frames/secs
+
 print("Frames: " + str(fps))
 video.release()
 cv2.destroyAllWindows()
