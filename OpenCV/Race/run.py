@@ -10,7 +10,8 @@ from colorDectect import FindBigContour
 from output import output_speed, output_steering
 import heapq
 import time
-print("Ver 1.0.1v")
+ver = "Ver 1.0.2v"
+print(ver)
 time.sleep(2)
 
 #Ard
@@ -165,7 +166,7 @@ while True:
                 lap = lap + 1
                 delay = 0
 
-    cv2.putText(frame, str(frameskip), (100,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
+    cv2.putText(frame, str(ver), (100,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
     frameskip = frameskip + 1
 
 
