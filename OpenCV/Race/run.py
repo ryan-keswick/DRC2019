@@ -25,22 +25,22 @@ yPix = 480
 delay = 0
 lap = 0
 #*******************Adjust these values***********************************************
-LeftLinehLower = 105 
-LeftLinesLower = 49 
-LeftLinevLower = 83 
-LeftLinehUpper = 110 
-LeftLinesUpper = 228 
-LeftLinevUpper = 242 
+LeftLinehLower = 101 
+LeftLinesLower = 48 
+LeftLinevLower = 91 
+LeftLinehUpper = 112 
+LeftLinesUpper = 207 
+LeftLinevUpper = 194 
 #Put these values into an array, this will be helpful when passing it to functions later
 LeftLinelowerRange = (LeftLinehLower, LeftLinesLower, LeftLinevLower)
 LeftLineupperRange = (LeftLinehUpper, LeftLinesUpper, LeftLinevUpper)
 #*************************************************************************************
-RightLinehLower = 22 
-RightLinesLower = 8 
-RightLinevLower = 117 
+RightLinehLower = 20 
+RightLinesLower = 83 
+RightLinevLower = 100 
 RightLinehUpper = 30  
-RightLinesUpper = 255  
-RightLinevUpper = 255 
+RightLinesUpper = 231  
+RightLinevUpper = 243 
 #Put these values into an array, this will be helpful when passing it to functions later
 RightLinelowerRange = (RightLinehLower, RightLinesLower, RightLinevLower)
 RightLineupperRange = (RightLinehUpper, RightLinesUpper, RightLinevUpper)
