@@ -9,12 +9,15 @@ from loop import loopVideo
 from colorDectect import FindBigContour
 from output import output_speed, output_steering
 import heapq
-
+import time
+print("Ver 1.0.0v")
+time.sleep(2)
 
 #Ard
 port = "/dev/ttyACM0"
 ard = serial.Serial(port, 9600, timeout=5)
 
+start = time.time()
 
 middlePix = 320
 yPix = 480
@@ -32,10 +35,10 @@ LeftLinelowerRange = (LeftLinehLower, LeftLinesLower, LeftLinevLower)
 LeftLineupperRange = (LeftLinehUpper, LeftLinesUpper, LeftLinevUpper)
 #*************************************************************************************
 RightLinehLower = 22 
-RightLinesLower = 121 
-RightLinevLower = 152 
+RightLinesLower = 94 
+RightLinevLower = 202 
 RightLinehUpper = 30  
-RightLinesUpper = 249  
+RightLinesUpper = 162  
 RightLinevUpper = 255 
 #Put these values into an array, this will be helpful when passing it to functions later
 RightLinelowerRange = (RightLinehLower, RightLinesLower, RightLinevLower)
@@ -69,9 +72,11 @@ if video.isOpened() is False:
     print("Error opening video file")
     '''
 # Used for webcam
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(4)
 RcX = 0
 LcX = 0
+frameskip = 0
+
 
 while True:
     # Used for webcam
@@ -134,14 +139,17 @@ while True:
     Ldist = abs(middlePix - LcX)
     cv2.circle(frame, (Rdist-Ldist+middlePix, int(yPix/2)),10,  (0,0,255), -1)
 
-    # diff is the steering
-    diff = Rdist - Ldist
-    # Speed is how fast the car should go
-    speed = abs(-0.0006*diff*diff+100)
-    print(str(output_steering(diff)))
-    ard.write(str.encode((output_steering(diff))))
-    print(str(output_speed(10)))
-    ard.write((str.encode(output_speed(10))))
+    #Slowing down output
+    if frameskip is 24:
+        frameskip = 0
+        # diff is the steering
+        diff = Rdist - Ldist
+        # Speed is how fast the car should go
+        speed = abs(-0.0006*diff*diff+100)
+        print(str(output_steering(diff)))
+        ard.write(str.encode((output_steering(diff))))
+        print(str(output_speed(10)))
+        ard.write((str.encode(output_speed(10))))
 
     # Lap detection
     delay = delay + 1
@@ -157,15 +165,24 @@ while True:
                 lap = lap + 1
                 delay = 0
 
+    cv2.putText(frame, str(frameskip), (100,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
+    frameskip = frameskip + 1
+
+
     #Display the images we got, these are the original image...(remember to add more)
     cv2.imshow('original image', frame) #display the original frame from video
     cv2.imshow('Left', LeftcolorFilter) #display the original frame from video
     cv2.imshow('Right', RightcolorFilter) #display the original frame from video
     cv2.imshow('Obstacles', ObstaclecolorFilter)
 
-
     if cv2.waitKey(25) & 0xFF == ord('q'):
         break
 
+    end = time.time()
+
+
+secs = end - start
+fps = frameskip/secs
+print("Frames: " + str(fps))
 video.release()
 cv2.destroyAllWindows()
