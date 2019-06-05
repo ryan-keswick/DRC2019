@@ -77,6 +77,7 @@ cap = cv2.VideoCapture(0)
 RcX = 0
 LcX = 0
 frameskip = 0
+frameski = 0
 frames = 0
 
 frame_width = int(cap.get(3))
@@ -157,7 +158,8 @@ while True:
         print(str(output_steering(diff)))
         ard.write(str.encode((output_steering(diff))))
 # Prints the speed once at the start so this isn't nessacary 
-    if frameskip is 12: 
+    if frameski is 12: 
+        frameski = 0
         print(str(output_speed(10)))
         ard.write((str.encode(output_speed(10))))
 
@@ -177,7 +179,7 @@ while True:
 
     cv2.putText(frame, str(ver), (100,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
     frameskip = frameskip + 1
-
+    frameski = frameski + 1
     #Display the images we got, these are the original image...(remember to add more)
     cv2.imshow('original image', frame) #display the original frame from video
     cv2.imshow('Left', LeftcolorFilter) #display the original frame from video
