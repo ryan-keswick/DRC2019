@@ -8,7 +8,7 @@ def output_steering(x):
     if -350 > x:
        letter = 'K'   
     elif -350 < x and x < -300:
-       letter = 'J'   
+       letter = 'K'   
     elif -300 < x and x < -250:
        letter = 'I'   
     elif -250 < x and x < -100:
@@ -24,7 +24,7 @@ def output_steering(x):
     elif 250 < x and x < 299:
        letter = 'C'   
     elif 300 < x and x < 350:
-       letter = 'B'   
+       letter = 'A'   
     elif x > 350:
        letter = 'A'   
 
