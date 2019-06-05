@@ -124,7 +124,7 @@ while True:
             #calculate y position of centroid
             RcY = int(R["m01"] / R["m00"])
             #draw a circle at the centroid to show where it is
-            cv2.circle(frame, (RcX, RcY), 10, (0, 0, 255), -1)       
+            cv2.circle(frame, (RcX, RcY), 10, (0, 255, 255), -1)       
             cv2.line(frame, (middlePix, yPix), (RcX, RcY), (255, 0, 255), 5)
 
 
