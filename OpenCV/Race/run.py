@@ -25,12 +25,12 @@ yPix = 480
 delay = 0
 lap = 0
 #*******************Adjust these values***********************************************
-LeftLinehLower = 109 
-LeftLinesLower = 166 
-LeftLinevLower = 57 
-LeftLinehUpper = 113 
-LeftLinesUpper = 207 
-LeftLinevUpper = 83 
+LeftLinehLower = 103 
+LeftLinesLower = 66 
+LeftLinevLower = 37 
+LeftLinehUpper = 114 
+LeftLinesUpper = 199 
+LeftLinevUpper = 97 
 #Put these values into an array, this will be helpful when passing it to functions later
 LeftLinelowerRange = (LeftLinehLower, LeftLinesLower, LeftLinevLower)
 LeftLineupperRange = (LeftLinehUpper, LeftLinesUpper, LeftLinevUpper)
@@ -116,7 +116,7 @@ while True:
     RightContours, RightcolorFilter = FindBigContour(hsvFrame, RightLinelowerRange, RightLineupperRange)
     if RightContours:
         biggestCont = max(RightContours, key = cv2.contourArea)
-        cv2.drawContours(frame, biggestCont, -1, (255,180,0), 2)
+        cv2.drawContours(frame, biggestCont, -1, (8,255,255), 2)
         if cv2.contourArea(biggestCont) > 200:
             R = cv2.moments(biggestCont)
             #calculate x position of centroid
@@ -125,7 +125,7 @@ while True:
             RcY = int(R["m01"] / R["m00"])
             #draw a circle at the centroid to show where it is
             cv2.circle(frame, (RcX, RcY), 10, (0, 255, 255), -1)       
-            cv2.line(frame, (middlePix, yPix), (RcX, RcY), (255, 0, 255), 5)
+            cv2.line(frame, (middlePix, yPix), (RcX, RcY), (0, 255, 255), 5)
 
 
     ObstacleContours, ObstaclecolorFilter = FindBigContour(hsvFrame, ObstacleLinelowerRange, ObstacleLineupperRange)
