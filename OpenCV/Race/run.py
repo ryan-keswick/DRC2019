@@ -79,11 +79,15 @@ LcX = 0
 frameskip = 0
 frames = 0
 
+frame_width = int(cap.get(3))
+frame_height = int(cap.get(4))
+out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
 
 while True:
     # Used for webcam
-    _, frame = cap.read()
-   
+    ret, frame = cap.read()
+    if ret == True:
+        out.write(frame)
     #The first thing we want to do is read in a frame from the video
     # This is used for looping a prerecorded vid
    # frame, video = loopVideo(video, input_vid)
@@ -184,6 +188,8 @@ end = time.time()
 secs = end - start
 fps = frames/secs
 
+out.release()
+cap.release()
 print("Frames: " + str(fps))
 video.release()
 cv2.destroyAllWindows()
