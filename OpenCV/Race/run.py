@@ -10,7 +10,7 @@ from colorDectect import FindBigContour
 from output import output_speed, output_steering
 import heapq
 import time
-ver = "Ver 1.0.6v"
+ver = "Ver 1.0.7v"
 print(ver)
 time.sleep(2)
 
