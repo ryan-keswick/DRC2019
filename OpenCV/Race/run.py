@@ -15,8 +15,8 @@ print(ver)
 time.sleep(2)
 
 #Ard
-port = "/dev/ttyACM0"
-ard = serial.Serial(port, 9600, timeout=5)
+#port = "/dev/ttyACM0"
+#ard = serial.Serial(port, 9600, timeout=5)
 
 start = time.time()
 
@@ -25,22 +25,22 @@ yPix = 480
 delay = 0
 lap = 0
 #*******************Adjust these values***********************************************
-LeftLinehLower = 101 
-LeftLinesLower = 48 
-LeftLinevLower = 91 
-LeftLinehUpper = 112 
-LeftLinesUpper = 207 
-LeftLinevUpper = 194 
+LeftLinehLower = 108 
+LeftLinesLower = 81 
+LeftLinevLower = 36 
+LeftLinehUpper = 116 
+LeftLinesUpper = 255 
+LeftLinevUpper = 126 
 #Put these values into an array, this will be helpful when passing it to functions later
 LeftLinelowerRange = (LeftLinehLower, LeftLinesLower, LeftLinevLower)
 LeftLineupperRange = (LeftLinehUpper, LeftLinesUpper, LeftLinevUpper)
 #*************************************************************************************
-RightLinehLower = 22 
-RightLinesLower = 88 
-RightLinevLower = 219 
-RightLinehUpper = 29  
-RightLinesUpper = 183  
-RightLinevUpper = 255 
+RightLinehLower = 17 
+RightLinesLower = 48 
+RightLinevLower = 50 
+RightLinehUpper = 27  
+RightLinesUpper = 235  
+RightLinevUpper = 221 
 #Put these values into an array, this will be helpful when passing it to functions later
 RightLinelowerRange = (RightLinehLower, RightLinesLower, RightLinevLower)
 RightLineupperRange = (RightLinehUpper, RightLinesUpper, RightLinevUpper)
@@ -73,7 +73,7 @@ if video.isOpened() is False:
     print("Error opening video file")
     '''
 # Used for webcam
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(4)
 RcX = 0
 LcX = 0
 frameskip = 0
@@ -149,9 +149,9 @@ while True:
         # Speed is how fast the car should go
         speed = abs(-0.0006*diff*diff+100)
         print(str(output_steering(diff)))
-        ard.write(str.encode((output_steering(diff))))
+        #ard.write(str.encode((output_steering(diff))))
         print(str(output_speed(10)))
-        ard.write((str.encode(output_speed(10))))
+        #ard.write((str.encode(output_speed(10))))
 
     # Lap detection
     delay = delay + 1
