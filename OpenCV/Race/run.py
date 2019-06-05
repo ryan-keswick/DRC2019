@@ -86,8 +86,7 @@ out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (
 while True:
     # Used for webcam
     ret, frame = cap.read()
-    if ret == True:
-        out.write(frame)
+    
     #The first thing we want to do is read in a frame from the video
     # This is used for looping a prerecorded vid
    # frame, video = loopVideo(video, input_vid)
@@ -183,6 +182,9 @@ while True:
     if cv2.waitKey(25) & 0xFF == ord('q'):
         break
     frames = frames + 1
+
+    if ret == True:
+        out.write(frame)
 
 end = time.time()
 secs = end - start
