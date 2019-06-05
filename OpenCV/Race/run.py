@@ -158,7 +158,7 @@ while True:
         print(str(output_steering(diff)))
         ard.write(str.encode((output_steering(diff))))
 # Prints the speed once at the start so this isn't nessacary 
-    if frameski is 12: 
+    if frameski is 24: 
         frameski = 0
         print(str(output_speed(10)))
         ard.write((str.encode(output_speed(10))))
