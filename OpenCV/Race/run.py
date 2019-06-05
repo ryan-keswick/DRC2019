@@ -83,6 +83,9 @@ frame_width = int(cap.get(3))
 frame_height = int(cap.get(4))
 out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
 
+print(str(output_speed(10)))
+ard.write(str.encode((output_speed(10))))
+
 while True:
     # Used for webcam
     ret, frame = cap.read()
@@ -153,8 +156,9 @@ while True:
         speed = abs(-0.0006*diff*diff+100)
         print(str(output_steering(diff)))
         ard.write(str.encode((output_steering(diff))))
-        print(str(output_speed(10)))
-        ard.write((str.encode(output_speed(10))))
+# Prints the speed once at the start so this isn't nessacary 
+#        print(str(output_speed(10)))
+#        ard.write((str.encode(output_speed(10))))
 
     # Lap detection
     delay = delay + 1
