@@ -15,8 +15,8 @@ print(ver)
 time.sleep(2)
 
 #Ard
-#port = "/dev/ttyACM0"
-#ard = serial.Serial(port, 9600, timeout=5)
+port = "/dev/ttyACM0"
+ard = serial.Serial(port, 9600, timeout=5)
 
 start = time.time()
 
@@ -73,7 +73,7 @@ if video.isOpened() is False:
     print("Error opening video file")
     '''
 # Used for webcam
-cap = cv2.VideoCapture(4)
+cap = cv2.VideoCapture(0)
 RcX = 0
 LcX = 0
 frameskip = 0
@@ -149,9 +149,9 @@ while True:
         # Speed is how fast the car should go
         speed = abs(-0.0006*diff*diff+100)
         print(str(output_steering(diff)))
-        #ard.write(str.encode((output_steering(diff))))
+        ard.write(str.encode((output_steering(diff))))
         print(str(output_speed(10)))
-        #ard.write((str.encode(output_speed(10))))
+        ard.write((str.encode(output_speed(10))))
 
     # Lap detection
     delay = delay + 1
