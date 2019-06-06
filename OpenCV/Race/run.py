@@ -10,7 +10,7 @@ from colorDectect import FindBigContour
 from output import output_speed, output_steering
 import heapq
 import time
-ver = "Ver 1.1.2v"
+ver = "Ver 1.1.3v"
 print(ver)
 time.sleep(2)
 
@@ -35,12 +35,12 @@ LeftLinevUpper = 128
 LeftLinelowerRange = (LeftLinehLower, LeftLinesLower, LeftLinevLower)
 LeftLineupperRange = (LeftLinehUpper, LeftLinesUpper, LeftLinevUpper)
 #*************************************************************************************
-RightLinehLower = 21 
-RightLinesLower = 123 
-RightLinevLower = 135 
-RightLinehUpper = 26  
-RightLinesUpper = 248  
-RightLinevUpper = 201 
+RightLinehLower = 32 
+RightLinesLower = 162
+RightLinevLower = 101 
+RightLinehUpper = 38  
+RightLinesUpper = 255  
+RightLinevUpper = 212
 #Put these values into an array, this will be helpful when passing it to functions later
 RightLinelowerRange = (RightLinehLower, RightLinesLower, RightLinevLower)
 RightLineupperRange = (RightLinehUpper, RightLinesUpper, RightLinevUpper)
@@ -112,7 +112,8 @@ while True:
     # Small Blur to Make Masking More Consistent
     blueblur = cv2.GaussianBlur(blueFrame, (3,3), 0)
 
-    hsvFrame = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    # Need to remove BLUEBLUR to blur
+    hsvFrame = cv2.cvtColor(blueblur, cv2.COLOR_BGR2HSV)
     BhsvFrame = cv2.cvtColor(blueblur, cv2.COLOR_BGR2HSV)
 
 
@@ -162,7 +163,7 @@ while True:
 
     #  Direction calculation
     Rdist = abs(middlePix - RcX)
-    Ldist = abs(middlePix - LcX)
+    Ldist = abs(middlePix + LcX)
     cv2.circle(frame, (Rdist-Ldist+middlePix, int(yPix/2)),10,  (0,0,255), -1)
 
     #Slowing down output
