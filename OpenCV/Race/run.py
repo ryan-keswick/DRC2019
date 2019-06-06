@@ -10,13 +10,13 @@ from colorDectect import FindBigContour
 from output import output_speed, output_steering
 import heapq
 import time
-ver = "Ver 1.0.8v now changes sat!!"
+ver = "Ver 1.0.9v now changes sat!!"
 print(ver)
 time.sleep(2)
 
 #Ard
-#port = "/dev/ttyACM0"
-#ard = serial.Serial(port, 9600, timeout=5)
+port = "/dev/ttyACM0"
+ard = serial.Serial(port, 9600, timeout=5)
 
 start = time.time()
 
@@ -73,7 +73,7 @@ if video.isOpened() is False:
     print("Error opening video file")
     '''
 # Used for webcam
-cap = cv2.VideoCapture(4)
+cap = cv2.VideoCapture(0)
 RcX = 0
 LcX = 0
 frameskip = 0
@@ -85,7 +85,7 @@ frame_height = int(cap.get(4))
 out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
 
 print(str(output_speed(10)))
-#ard.write(str.encode((output_speed(10))))
+ard.write(str.encode((output_speed(10))))
 
 while True:
     # Used for webcam
@@ -167,12 +167,12 @@ while True:
         # Speed is how fast the car should go
         speed = abs(-0.0006*diff*diff+100)
         print(str(output_steering(diff)))
-#        ard.write(str.encode((output_steering(diff))))
+        ard.write(str.encode((output_steering(diff))))
 # Prints the speed once at the start so this isn't nessacary 
     if frameski is 24: 
         frameski = 0
         print(str(output_speed(10)))
-#        ard.write((str.encode(output_speed(10))))
+        ard.write((str.encode(output_speed(10))))
 
     # Lap detection
     delay = delay + 1
