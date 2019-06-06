@@ -12,15 +12,15 @@ def output_steering(x):
     elif -300 < x and x < -250:
        letter = 'J'   
     elif -250 < x and x < -100:
-       letter = 'J'   
-    elif -100 < x and x < -10:
        letter = 'I'   
+    elif -100 < x and x < -10:
+       letter = 'H'   
     elif -10 < x and x < 10:
        letter = 'F'   
     elif 10 < x and x < 100:
-       letter = 'C'   
+       letter = 'D'   
     elif 100 < x and x < 250:
-       letter = 'B'   
+       letter = 'C'   
     elif 250 < x and x < 299:
        letter = 'B'   
     elif 300 < x and x < 350:
