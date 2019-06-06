@@ -10,7 +10,7 @@ from colorDectect import FindBigContour
 from output import output_speed, output_steering
 import heapq
 import time
-ver = "Ver 1.0.9v now changes sat!!"
+ver = "Ver 1.1.0v"
 print(ver)
 time.sleep(2)
 
@@ -25,22 +25,22 @@ yPix = 480
 delay = 0
 lap = 0
 #*******************Adjust these values***********************************************
-LeftLinehLower = 93
-LeftLinesLower = 20
-LeftLinevLower = 35 
-LeftLinehUpper = 116 
-LeftLinesUpper = 221 
-LeftLinevUpper = 114 
+LeftLinehLower = 75
+LeftLinesLower = 92
+LeftLinevLower = 48 
+LeftLinehUpper = 104 
+LeftLinesUpper = 223 
+LeftLinevUpper = 139 
 #Put these values into an array, this will be helpful when passing it to functions later
 LeftLinelowerRange = (LeftLinehLower, LeftLinesLower, LeftLinevLower)
 LeftLineupperRange = (LeftLinehUpper, LeftLinesUpper, LeftLinevUpper)
 #*************************************************************************************
-RightLinehLower = 22
-RightLinesLower = 81 
-RightLinevLower = 99 
-RightLinehUpper = 27  
-RightLinesUpper = 248  
-RightLinevUpper = 181 
+RightLinehLower = 40 
+RightLinesLower = 181 
+RightLinevLower = 98 
+RightLinehUpper = 51  
+RightLinesUpper = 255  
+RightLinevUpper = 242 
 #Put these values into an array, this will be helpful when passing it to functions later
 RightLinelowerRange = (RightLinehLower, RightLinesLower, RightLinevLower)
 RightLineupperRange = (RightLinehUpper, RightLinesUpper, RightLinevUpper)
@@ -95,22 +95,28 @@ while True:
     # This is used for looping a prerecorded vid
    # frame, video = loopVideo(video, input_vid)
   
-    # Small Blur to Make Masking More Consistent
-    blur = cv2.GaussianBlur(frame, (3,3), 0)
-
-    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
-
-
-    hsvFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    
+    rows, cols = frame.shape[:2]
+    blueFrame = frame
     ####
     frame[...,1] = frame[...,1] * 1.4
 
     frame[...,2] = frame[...,2]* 0.6
     ####
+    blueFrame[...,1] = blueFrame[...,1] * 1.4
+
+    blueFrame[...,2] = blueFrame[...,2] * 1 
+    ####
+ 
+    # Small Blur to Make Masking More Consistent
+    blur = cv2.GaussianBlur(frame, (3,3), 0)
+    # Small Blur to Make Masking More Consistent
+    blueblur = cv2.GaussianBlur(blueFrame, (3,3), 0)
+
+    hsvFrame = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    BhsvFrame = cv2.cvtColor(blueblur, cv2.COLOR_BGR2HSV)
 
 
-    LeftContours, LeftcolorFilter = FindBigContour(hsvFrame, LeftLinelowerRange, LeftLineupperRange)
+    LeftContours, LeftcolorFilter = FindBigContour(BhsvFrame, LeftLinelowerRange, LeftLineupperRange)
     if LeftContours:
         biggestCont = max(LeftContours, key = cv2.contourArea)
         cv2.drawContours(frame, biggestCont, -1, (255,0,0), 2)
