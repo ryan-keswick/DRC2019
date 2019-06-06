@@ -73,9 +73,9 @@ while(True):
     # Obtaining the Number of Rows and Columns in the Image
     rows, cols = frame.shape[:2]
     ####
-    frame[...,1] = frame[...,1] * 1.4
+    #frame[...,1] = frame[...,1] * 1.4
 
-    frame[...,2] = frame[...,2]* 1.0
+    #frame[...,2] = frame[...,2]* 1.0
     ####
  
     # Small Blur to Make Masking More Consistent

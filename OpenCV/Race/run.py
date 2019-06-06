@@ -35,12 +35,12 @@ LeftLinevUpper = 139
 LeftLinelowerRange = (LeftLinehLower, LeftLinesLower, LeftLinevLower)
 LeftLineupperRange = (LeftLinehUpper, LeftLinesUpper, LeftLinevUpper)
 #*************************************************************************************
-RightLinehLower = 40 
-RightLinesLower = 181 
-RightLinevLower = 98 
-RightLinehUpper = 51  
-RightLinesUpper = 255  
-RightLinevUpper = 242 
+RightLinehLower = 21 
+RightLinesLower = 123 
+RightLinevLower = 135 
+RightLinehUpper = 26  
+RightLinesUpper = 248  
+RightLinevUpper = 201 
 #Put these values into an array, this will be helpful when passing it to functions later
 RightLinelowerRange = (RightLinehLower, RightLinesLower, RightLinevLower)
 RightLineupperRange = (RightLinehUpper, RightLinesUpper, RightLinevUpper)
@@ -98,9 +98,9 @@ while True:
     rows, cols = frame.shape[:2]
     blueFrame = frame
     ####
-    frame[...,1] = frame[...,1] * 1.4
+    #frame[...,1] = frame[...,1] * 1.4
 
-    frame[...,2] = frame[...,2]* 0.6
+    #frame[...,2] = frame[...,2]* 0.6
     ####
     blueFrame[...,1] = blueFrame[...,1] * 1.4
 
