@@ -58,7 +58,7 @@ def loopVideo(cap, videoName):
 
 # Request the Device to Capture Footage from Camera
 # Setting it to  video or not
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(4)
 #input_vid = "ObstacleTest1.avi"
 #video = cv2.VideoCapture(input_vid)
 
@@ -76,9 +76,13 @@ while(True):
     # Small Blur to Make Masking More Consistent
     blur = cv2.GaussianBlur(frame, (3,3), 0)
 
-    # Convert the Image to HSV Colourspace
     hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
 
+    ####
+    frame[...,1] = frame[...,1] * 1.4
+
+    frame[...,2] = frame[...,2]* 0.6
+    ####
     # Filtering the Hue
     mask_Colour = cv2.inRange(hsv, np.array([minHue, minSat, minVal]), np.array([maxHue, maxSat, maxVal]))
 

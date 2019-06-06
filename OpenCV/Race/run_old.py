@@ -10,13 +10,13 @@ from colorDectect import FindBigContour
 from output import output_speed, output_steering
 import heapq
 import time
-ver = "Ver 1.0.8v now changes sat!!"
+ver = "Ver 1.0.7v"
 print(ver)
 time.sleep(2)
 
 #Ard
-#port = "/dev/ttyACM0"
-#ard = serial.Serial(port, 9600, timeout=5)
+port = "/dev/ttyACM0"
+ard = serial.Serial(port, 9600, timeout=5)
 
 start = time.time()
 
@@ -25,22 +25,22 @@ yPix = 480
 delay = 0
 lap = 0
 #*******************Adjust these values***********************************************
-LeftLinehLower = 93
-LeftLinesLower = 20
-LeftLinevLower = 35 
-LeftLinehUpper = 116 
-LeftLinesUpper = 221 
-LeftLinevUpper = 114 
+LeftLinehLower = 103 
+LeftLinesLower = 66 
+LeftLinevLower = 37 
+LeftLinehUpper = 114 
+LeftLinesUpper = 199 
+LeftLinevUpper = 97 
 #Put these values into an array, this will be helpful when passing it to functions later
 LeftLinelowerRange = (LeftLinehLower, LeftLinesLower, LeftLinevLower)
 LeftLineupperRange = (LeftLinehUpper, LeftLinesUpper, LeftLinevUpper)
 #*************************************************************************************
-RightLinehLower = 22
-RightLinesLower = 81 
-RightLinevLower = 99 
+RightLinehLower = 17 
+RightLinesLower = 48 
+RightLinevLower = 50 
 RightLinehUpper = 27  
-RightLinesUpper = 248  
-RightLinevUpper = 181 
+RightLinesUpper = 235  
+RightLinevUpper = 221 
 #Put these values into an array, this will be helpful when passing it to functions later
 RightLinelowerRange = (RightLinehLower, RightLinesLower, RightLinevLower)
 RightLineupperRange = (RightLinehUpper, RightLinesUpper, RightLinevUpper)
@@ -73,7 +73,7 @@ if video.isOpened() is False:
     print("Error opening video file")
     '''
 # Used for webcam
-cap = cv2.VideoCapture(4)
+cap = cv2.VideoCapture(0)
 RcX = 0
 LcX = 0
 frameskip = 0
@@ -85,7 +85,7 @@ frame_height = int(cap.get(4))
 out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
 
 print(str(output_speed(10)))
-#ard.write(str.encode((output_speed(10))))
+ard.write(str.encode((output_speed(10))))
 
 while True:
     # Used for webcam
@@ -95,19 +95,8 @@ while True:
     # This is used for looping a prerecorded vid
    # frame, video = loopVideo(video, input_vid)
   
-    # Small Blur to Make Masking More Consistent
-    blur = cv2.GaussianBlur(frame, (3,3), 0)
-
-    hsv = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
-
-
+  
     hsvFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    
-    ####
-    frame[...,1] = frame[...,1] * 1.4
-
-    frame[...,2] = frame[...,2]* 0.6
-    ####
 
 
     LeftContours, LeftcolorFilter = FindBigContour(hsvFrame, LeftLinelowerRange, LeftLineupperRange)
@@ -167,12 +156,12 @@ while True:
         # Speed is how fast the car should go
         speed = abs(-0.0006*diff*diff+100)
         print(str(output_steering(diff)))
-#        ard.write(str.encode((output_steering(diff))))
+        ard.write(str.encode((output_steering(diff))))
 # Prints the speed once at the start so this isn't nessacary 
     if frameski is 24: 
         frameski = 0
         print(str(output_speed(10)))
-#        ard.write((str.encode(output_speed(10))))
+        ard.write((str.encode(output_speed(10))))
 
     # Lap detection
     delay = delay + 1
@@ -213,3 +202,4 @@ cap.release()
 print("Frames: " + str(fps))
 video.release()
 cv2.destroyAllWindows()
+
