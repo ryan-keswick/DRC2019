@@ -163,7 +163,7 @@ while True:
 
     #  Direction calculation
     Rdist = abs(middlePix - RcX)
-    Ldist = abs(middlePix + LcX)
+    Ldist = abs(middlePix - LcX)
     cv2.circle(frame, (Rdist-Ldist+middlePix, int(yPix/2)),10,  (0,0,255), -1)
 
     #Slowing down output
