@@ -22,7 +22,7 @@ def output_steering(x):
     elif 100 < x and x < 250:
        letter = 'B'   
     elif 250 < x and x < 299:
-       letter = 'A'   
+       letter = 'B'   
     elif 300 < x and x < 350:
        letter = 'A'   
     elif x > 350:
