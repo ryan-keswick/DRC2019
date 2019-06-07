@@ -162,8 +162,8 @@ while True:
 
 
     #  Direction calculation
-    cv2.putText(frame, "LcX " + str(LcX), (150,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
-    cv2.putText(frame, "RcX " + str(RcX), (200,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
+    cv2.putText(frame, "LcX " + str(LcX), (150,150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
+    cv2.putText(frame, "RcX " + str(RcX), (200,200), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
     if LcX > 500:
         LcX = 0
     Rdist = abs(middlePix - RcX)
