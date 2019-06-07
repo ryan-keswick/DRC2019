@@ -88,6 +88,8 @@ print(str(output_speed(10)))
 ard.write(str.encode((output_speed(10))))
 
 while True:
+    LcX = 0
+    RcX = 0
     # Used for webcam
     ret, frame = cap.read()
     
