@@ -189,7 +189,7 @@ while True:
 # Prints the speed once at the start so this isn't nessacary 
     if frameski is 24: 
         frameski = 0
-        print(str(output_speed(10)))
+        print(str(d))
         if frameskip == 2:
             d = '3'
         else:
