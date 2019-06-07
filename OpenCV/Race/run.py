@@ -162,8 +162,8 @@ while True:
 
 
     #  Direction calculation
-    if Lcx > 500:
-        Lcx = 0
+    if LcX > 500:
+        LcX = 0
     Rdist = abs(middlePix - RcX)
     Ldist = abs(middlePix - LcX)
     cv2.circle(frame, (Rdist-Ldist+middlePix, int(yPix/2)),10,  (0,0,255), -1)
