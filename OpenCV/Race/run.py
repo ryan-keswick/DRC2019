@@ -189,11 +189,12 @@ while True:
 # Prints the speed once at the start so this isn't nessacary 
     if frameski is 24: 
         frameski = 0
-        print(str(d))
+        d = 2
         if frameskip == 2:
             d = '3'
         else:
             d = '2'
+        print(str(d))
         ard.write((str.encode(d)))
 
     # Lap detection
