@@ -166,6 +166,8 @@ while True:
     #  Direction calculation
     if LcX > 500:
         LcX = 0
+    if LcX != 0 and LcX < 50:
+        LcX = LcX + 100
     if RcX != 0 and RcX < 150:
         RcX = RcX + 200
     cv2.putText(frame, "LcX " + str(LcX), (150,150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
