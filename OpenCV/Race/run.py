@@ -166,6 +166,8 @@ while True:
     cv2.putText(frame, "RcX " + str(RcX), (200,200), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,90,255), 2, cv2.LINE_AA)
     if LcX > 500:
         LcX = 0
+    if RcX != 0 and RcX > 150:
+        RcX = RcX + 200
     Rdist = abs(middlePix - RcX)
     Ldist = abs(middlePix - LcX)
     cv2.circle(frame, (Rdist-Ldist+middlePix, int(yPix/2)),10,  (0,0,255), -1)
