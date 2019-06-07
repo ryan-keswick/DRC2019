@@ -25,12 +25,12 @@ yPix = 480
 delay = 0
 lap = 0
 #*******************Adjust these values***********************************************
-LeftLinehLower = 43 
-LeftLinesLower = 117
-LeftLinevLower = 24 
-LeftLinehUpper = 105 
-LeftLinesUpper = 189 
-LeftLinevUpper = 189 
+LeftLinehLower = 108 
+LeftLinesLower = 139
+LeftLinevLower = 50 
+LeftLinehUpper = 112 
+LeftLinesUpper = 228 
+LeftLinevUpper = 109 
 #Put these values into an array, this will be helpful when passing it to functions later
 LeftLinelowerRange = (LeftLinehLower, LeftLinesLower, LeftLinevLower)
 LeftLineupperRange = (LeftLinehUpper, LeftLinesUpper, LeftLinevUpper)
@@ -98,9 +98,9 @@ while True:
     rows, cols = frame.shape[:2]
     blueFrame = frame
     ####
-    #frame[...,1] = frame[...,1] * 1.4
+    frame[...,1] = frame[...,1] * 1.1
 
-    #frame[...,2] = frame[...,2]* 0.6
+    frame[...,2] = frame[...,2]* 1.0
     ####
     blueFrame[...,1] = blueFrame[...,1] * 1.4
 
@@ -114,7 +114,7 @@ while True:
 
     # Need to remove BLUEBLUR to blur
     hsvFrame = cv2.cvtColor(blueblur, cv2.COLOR_BGR2HSV)
-    BhsvFrame = cv2.cvtColor(blueblur, cv2.COLOR_BGR2HSV)
+    BhsvFrame = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
 
 
     LeftContours, LeftcolorFilter = FindBigContour(BhsvFrame, LeftLinelowerRange, LeftLineupperRange)
@@ -163,8 +163,7 @@ while True:
 
     #  Direction calculation
     Rdist = abs(middlePix - RcX)
-    #Ldist = abs(middlePix - LcX)
-    Ldist = middlePix
+    Ldist = abs(middlePix - LcX)
     cv2.circle(frame, (Rdist-Ldist+middlePix, int(yPix/2)),10,  (0,0,255), -1)
 
     #Slowing down output
