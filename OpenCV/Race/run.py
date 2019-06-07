@@ -85,7 +85,7 @@ frame_height = int(cap.get(4))
 out = cv2.VideoWriter('outpy.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
 
 print(str(output_speed(10)))
-ard.write(str.encode((output_speed(10))))
+ard.write(str.encode('5'))
 
 while True:
     LcX = 0
