@@ -64,7 +64,7 @@ FinishLinevUpper = 162
 #Put these values into an array, this will be helpful when passing it to functions later
 FinishLinelowerRange = (FinishLinehLower, FinishLinesLower, FinishLinevLower)
 FinishLineupperRange = (FinishLinehUpper, FinishLinesUpper, FinishLinevUpper)
-
+a = 0
 # Used for Prerecored Vid`
 '''
 input_vid = "TrackTest4.avi" 
@@ -189,11 +189,12 @@ while True:
 # Prints the speed once at the start so this isn't nessacary 
     if frameski is 24: 
         frameski = 0
-        d = 2
-        if frameskip > 0:
+        if a = 1:
+            a = 0
             d = '3'
-        else:
+        elif a = 0:
             d = '2'
+            a = 1
         print(str(d))
         ard.write((str.encode(d)))
 
