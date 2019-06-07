@@ -36,8 +36,10 @@ def output_steering(x):
 
 # Speed ranging from 0..10
 # just one for now during testing
-def output_speed(percent):
-    return '2'
+def output_speed(steer):
+   if -100 < steer and steer < 100:
+      return '4'
+   return '2'
 
 '''
 Speed ranges:

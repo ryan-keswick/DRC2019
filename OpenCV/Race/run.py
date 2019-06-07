@@ -187,16 +187,10 @@ while True:
         print(str(output_steering(diff)))
         ard.write(str.encode((output_steering(diff))))
 # Prints the speed once at the start so this isn't nessacary 
-    if frameski is 24: 
+    if frameski is 4: 
         frameski = 0
-        if a == 1:
-            a = 0
-            d = '3'
-        elif a == 0:
-            d = '2'
-            a = 1
         print(str(d))
-        ard.write((str.encode(d)))
+        ard.write((str.encode(output_speed(diff))))
 
     # Lap detection
     delay = delay + 1
