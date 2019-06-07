@@ -190,7 +190,7 @@ while True:
     if frameski is 24: 
         frameski = 0
         d = 2
-        if frameskip > 1:
+        if frameskip < 1:
             d = '3'
         else:
             d = '2'
