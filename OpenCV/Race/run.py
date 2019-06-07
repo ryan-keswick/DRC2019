@@ -25,12 +25,12 @@ yPix = 480
 delay = 0
 lap = 0
 #*******************Adjust these values***********************************************
-LeftLinehLower = 108 
-LeftLinesLower = 114 
-LeftLinevLower = 41 
-LeftLinehUpper = 114 
-LeftLinesUpper = 203 
-LeftLinevUpper = 93
+LeftLinehLower = 88 
+LeftLinesLower = 96 
+LeftLinevLower = 50 
+LeftLinehUpper = 102 
+LeftLinesUpper = 158 
+LeftLinevUpper = 122
 #Put these values into an array, this will be helpful when passing it to functions later
 LeftLinelowerRange = (LeftLinehLower, LeftLinesLower, LeftLinevLower)
 LeftLineupperRange = (LeftLinehUpper, LeftLinesUpper, LeftLinevUpper)
@@ -73,7 +73,7 @@ if video.isOpened() is False:
     print("Error opening video file")
     '''
 # Used for webcam
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(4)
 RcX = 0
 LcX = 0
 frameskip = 0
@@ -98,9 +98,9 @@ while True:
     rows, cols = frame.shape[:2]
     blueFrame = frame
     ####
-    frame[...,1] = frame[...,1] * 1.0
+   # frame[...,1] = frame[...,1] * 1.0
 
-    frame[...,2] = frame[...,2]* 1.0
+   # frame[...,2] = frame[...,2]* 1.0
     ####
     blueFrame[...,1] = blueFrame[...,1] * 1.4
 
@@ -114,7 +114,7 @@ while True:
 
     # Need to remove BLUEBLUR to blur
     hsvFrame = cv2.cvtColor(blueblur, cv2.COLOR_BGR2HSV)
-    BhsvFrame = cv2.cvtColor(blur, cv2.COLOR_BGR2HSV)
+    BhsvFrame = cv2.cvtColor(blueblur, cv2.COLOR_BGR2HSV)
 
 
     LeftContours, LeftcolorFilter = FindBigContour(BhsvFrame, LeftLinelowerRange, LeftLineupperRange)
