@@ -190,7 +190,11 @@ while True:
     if frameski is 24: 
         frameski = 0
         print(str(output_speed(10)))
-        ard.write((str.encode(output_speed(10))))
+        if frameskip == 2:
+            d = '3'
+        else:
+            d = '2'
+        ard.write((str.encode(d)))
 
     # Lap detection
     delay = delay + 1
